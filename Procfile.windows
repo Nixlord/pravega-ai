@@ -1,0 +1,1 @@
+web: $env:FLASK_APP = "src/index.py"; python -m flask run
