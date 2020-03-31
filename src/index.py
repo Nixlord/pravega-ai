@@ -1,11 +1,16 @@
-from flask import Flask
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
 
 @app.route('/')
-def hello_world():
-    return "Hello World"
+def index():
+    return "Pravega Predictor welcomes you"
+
+
+@app.route('/hello/<name>')
+def say_hello(name):
+    return jsonify({"developer": name})
 
 
 if __name__ == '__main__':
