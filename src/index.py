@@ -18,7 +18,7 @@ def query():
     if 'name' in request.args:
         return jsonify({'queryResults': request.args['name']})
     else:
-        return jsonify({'queryResults': None})
+        return jsonify({'queryResults': None} )
 
 
 if __name__ == '__main__':
