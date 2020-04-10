@@ -7,7 +7,7 @@ import math
 def nothing(x):
     pass
 
-
+# Hough Transform to detect circle pattern of the clock
 def hough_transform(filename):
     # Loads an image
     img = cv.imread(cv.samples.findFile(filename), cv.IMREAD_COLOR)
