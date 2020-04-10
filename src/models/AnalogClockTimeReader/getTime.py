@@ -146,7 +146,7 @@ def line_transform(crop_img):
             dx = l3[2] - l3[0]
 
             # The Hough Line Transform uses a 2-D Co-ordinate system which has its origin at the top-left corner.
-            # The +ve X-axis runs from the origin towards right and the +ve Y-axis runs from origin towards bottom
+            # The +ve X-axis runs from the origin towards right and the +ve Y-axis runs from origin towards bottom.
             # The approach here is to make adjustments so that we bring the origin to the centre of our image.
             # It makes understanding of angles and determination of time much easier.
 
@@ -198,9 +198,8 @@ def line_transform(crop_img):
             angles.append(angle)
             cv.line(cdst, p1_3, p2_3, (0, 100, 200), 2, cv.LINE_AA)
     else:
-        # When both hands are in one straight line and both are clearly visible
+        # When both hands are in one straight line and both are not clearly visible
         l3 = linesP_img_final[0]
-        length_1 = math.sqrt(abs((l3[2] - l3[0]) ** 2 + (l3[3] - l3[1]) ** 2))
         p1_3 = (l3[0], l3[1])
         p2_3 = (l3[2], l3[3])
         dy = l3[3] - l3[1]
