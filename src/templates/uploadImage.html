@@ -1,19 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
 <body>
     <h1>UPLOAD IMAGE</h1>
     <div>
-        <form action="/api/upload-clock" method="post" enctype="multipart/form-data">
-            <label>
-                Select Image
-                <input type="file" name="clock_image" id="clock_image">
-            </label>
-            <button type="submit">Upload</button>
-        </form>
+        <label>
+            Select Image
+            <input id="inputImageUpload" type="file" name="clock_image" id="clock_image">
+        </label>
+        <button id="buttonImageUpload" type="submit">Upload</button>
+        <p id="textClockTime"></p>        
+
     </div>
+    <!--    Proof of Concept. Needs proper design -->
+    <script>
+        const buttonImageUpload = document.getElementById("buttonImageUpload");
+        const fileField = document.getElementById('inputImageUpload');
+        const textClockTime = document.getElementById('textClockTime');
+
+        buttonImageUpload.addEventListener('click', () => {
+            // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#Uploading_a_file
+            const formData = new FormData()
+            formData.append('clock_image', fileField.files[0])
+            
+            fetch("/api/upload-clock", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json())
+            .then(json => {
+                console.log(`Recieved: ${json}`);
+                textClockTime.appendChild(
+                    document.createTextNode(
+                        `${json.hours} : ${json.minutes}`
+                    )
+                )
+            })
+        })
+
+    </script>
 </body>
+
 </html>
