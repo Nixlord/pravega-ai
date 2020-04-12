@@ -3,7 +3,7 @@ import os
 import random
 from werkzeug.utils import secure_filename
 
-from models.clock.getTime import detectTimeFrom
+from src.models.clock.getTime import detectTimeFrom
 
 app = Flask(__name__)
 
