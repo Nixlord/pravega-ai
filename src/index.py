@@ -47,6 +47,10 @@ def upload_clock():
         image = request.files['clock_image']
         # Of course a much better mechanism is required. This is PoC
         filename = secure_filename(f'clock_image_{random.randint(1000, 9999)}.jpg')
+
+        if not os.path.exists('./temp'):
+            os.makedirs('./temp')
+
         image_path = os.path.join('./temp', filename)
         image.save(image_path)
         print(f" Saving {image} as {image_path}")
