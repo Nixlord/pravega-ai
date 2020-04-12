@@ -3,6 +3,8 @@ import os
 import random
 from werkzeug.utils import secure_filename
 
+from models.clock.getTime import detectTimeFrom
+
 app = Flask(__name__)
 
 
@@ -32,18 +34,25 @@ def query():
     name: str = request.args['name'] or ""
     return jsonify({'uppercaseName': name.upper()})
 
-# Learn at -> https://pythonise.com/series/learning-flask/flask-uploading-files
-@app.route('/upload-clock', methods=["GET", "POST"])
-def upload_clock():
-    if request.method == "GET":
-        return render_template("uploadImage.html")
 
-    if request.method == "POST" and request.files:
+# Learn at -> https://pythonise.com/series/learning-flask/flask-uploading-files
+@app.route('/upload-clock', methods=["GET"])
+def upload_clock_view():
+    return render_template("uploadImage.html")
+
+
+@app.route('/api/upload-clock', methods=["POST"])
+def upload_clock():
+    if request.files:
         image = request.files['clock_image']
-        filename = secure_filename(f'clock_image_{random.randint(3791, 48921)}.jpg')
-        image.save(os.path.join('./temp', filename))
-        print(f" Saving {image} as {filename}")
-        return redirect(request.url)
+        # Of course a much better mechanism is required. This is PoC
+        filename = secure_filename(f'clock_image_{random.randint(1000, 9999)}.jpg')
+        image_path = os.path.join('./temp', filename)
+        image.save(image_path)
+        print(f" Saving {image} as {image_path}")
+        time = detectTimeFrom(image_path)
+        print(f"Time: {time}")
+        return jsonify(time)
 
 
 if __name__ == '__main__':

@@ -12,8 +12,10 @@ def hough_transform(filename):
     # Loads an image
     img = cv.imread(cv.samples.findFile(filename), cv.IMREAD_COLOR)
     img = cv.resize(img, (600, 540))
-    cv.imshow("Original Image", img)
+    # Can't have this in server code.
+    # cv.imshow("Original Image", img)
 
+    # ToDo Need to modify this for server use
     # Check if image is loaded fine
     if img is None:
         print('Error opening image!')
@@ -229,7 +231,8 @@ def line_transform(crop_img):
                 hour_angle = -180 - angle1
         angles = [minute_angle, hour_angle]
         cv.line(cdst, p1_3, p2_3, (0, 100, 200), 2, cv.LINE_AA)
-    cv.imshow("Detected Lines (in red) - Probabilistic Line Transform", cdst)
+    # Can't have this in server code.
+    # cv.imshow("Detected Lines (in red) - Probabilistic Line Transform", cdst)
     print(angles)
     return angles
 
@@ -282,10 +285,7 @@ def getTime(angles):
     if -29 < hour_angle <= 0:
         hours = "03"
 
-    # Print the time
-    time = hours + ":" + minutes;
-    print("Time : " + time)
-    return time
+    return {"hours": int(hours), "minutes": int(minutes)}
     # cv.waitKey(0)
 
 
@@ -293,11 +293,13 @@ def getTime(angles):
 if __name__ == "__main__":
     crop_img = hough_transform()
     angles = line_transform(crop_img)
-    getTime(angles)
+    hours, minutes = getTime(angles).values()
+    # Print the time
+    print(f"Time : {hours}:{minutes}")
 
 
-# run() function to be invoked to be used from another project with filename as argument
-def run(filename):
-    cropped_img = hough_transform(filename)
+# detectTimeFrom(image) function to be invoked to be used from another project with filename as argument
+def detectTimeFrom(image_filename):
+    cropped_img = hough_transform(image_filename)
     all_angles = line_transform(cropped_img)
     return getTime(all_angles)
