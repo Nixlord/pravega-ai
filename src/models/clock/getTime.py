@@ -1,4 +1,5 @@
 # Modified for integration with pravega-ai
+# https://stackoverflow.com/questions/49469764/how-to-use-opencv-with-heroku
 import cv2 as cv
 import numpy as np
 import math
