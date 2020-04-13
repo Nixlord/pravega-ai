@@ -1,22 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="analogClock.css">
+    <link rel="shortcut icon" type="image/x-icon" href="data:image/png;base64,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"/>
+    <title>Analog Clock Predictor</title>
 </head>
-
 <body>
-    <h1>UPLOAD IMAGE</h1>
-    <div>
-        <label>
-            Select Image
-            <input id="inputImageUpload" type="file" name="clock_image" id="clock_image">
-        </label>
-        <button id="buttonImageUpload" type="submit">Upload</button>
-        <p id="textClockTime"></p>        
-
+    <div class="wrapper">
+        <div>
+            <!--Image Upload section-->
+            <section class="file">
+                <form action="#" method="post">
+                    <!--Image Upload from Web-->
+                    <label for="url">Enter Image URL:</label>
+                    <input type="url" name="textline" placeholder="E.g. http://www.example.com/example.jpg">
+                    <!--Image Upload from Local-->
+                    <label for="fileUpload">Upload from local</label>
+                    <input type="file" name="datafile" size="40">
+                    <!--Submit POST request to backend-->
+                    <div>
+                        <input type="submit" value="Upload">
+                    </div>
+                </form>
+            </section>
+        </div>
+        <section class="container">
+            <!--Display the image after POST request-->
+            <header class="showcase">
+                <a href="#" class="img"></a>
+            </header>
+            <!--Display the Time-->
+            <div class="time-box">
+                <h2>Time</h2>
+                <p class="predictedTime">10:09</p>
+                <!--Submit button to display time-->
+                <a href="" type="submit" class="btn">Get Time</a>
+            </div>
+        </section>
+          <footer>
+              <p>pravega-ai &copy; 2020</p>
+          </footer>
     </div>
+    
     <!--    Proof of Concept. Needs proper design -->
     <script>
         const buttonImageUpload = document.getElementById("buttonImageUpload");
