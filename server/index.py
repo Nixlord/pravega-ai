@@ -6,15 +6,15 @@ from werkzeug.utils import secure_filename
 # This needs fixing. Random stuff happens while import. 
 from models.clock.getTime import detectTimeFrom
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../website/build', static_url_path='/')
 
 
 @app.route('/')
 def index():
-    return "Pravega Predictor welcomes you"
+    return app.send_static_file("index.html")
 
 
-@app.route('/hello/<name>')
+@app.route('/api/hello/<name>')
 def say_hello(name: str):
     return jsonify({"developer": name})
 
@@ -23,14 +23,14 @@ def say_hello(name: str):
 #   -H 'Content-Type: application/json' \
 #   -H 'Host: localhost:5000' \
 #   -d '{"name": "shibasis"}'
-@app.route('/capitalize-post', methods=['POST'])
+@app.route('/api/capitalize-post', methods=['POST'])
 def sample_post():
     data = request.get_json()
     name: str = data['name'] or ""
     return jsonify({'uppercaseName': name.upper()})
 
 
-@app.route('/capitalize-get')
+@app.route('/api/capitalize-get')
 def query():
     name: str = request.args['name'] or ""
     return jsonify({'uppercaseName': name.upper()})
