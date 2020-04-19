@@ -3,6 +3,7 @@ import os
 import random
 from werkzeug.utils import secure_filename
 
+# This needs fixing. Random stuff happens while import. 
 from src.models.clock.getTime import detectTimeFrom
 
 app = Flask(__name__)
