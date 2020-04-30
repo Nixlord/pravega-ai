@@ -1,0 +1,13 @@
+{
+  "name": "pravega-ai",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Nixlord/pravega-ai.git",
+  "author": "Shibasis Patnaik <shibasis0801@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "serve-ui": "cd website && yarn start && cd ..",
+    "serve-api": "python server/index.py",
+    "serve-prod": ""
+  }
+}

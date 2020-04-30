@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
     Switch,
     Route
@@ -24,11 +24,19 @@ const Routes = () => (
 export default Routes;
 
 function Home() {
+    const [name, setName] = useState("Developer")
+    useEffect(() => {
+        fetch('/api/hello/Diksha')
+            .then(response => response.json())
+            .then(json => setName(json.developer))
+            .catch(error => console.error(error))
+    })
+
     return (
         <>
             <h2>Home</h2>
             <Button variant="contained" color="primary">
-                Primary
+                {name}
             </Button>
         </>
     );
