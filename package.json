@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "@material-ui/icons": "^4.9.1",
-    "@types/react-router-dom": "^5.1.5",
-    "react-router-dom": "^5.1.2"
-  }
-}
