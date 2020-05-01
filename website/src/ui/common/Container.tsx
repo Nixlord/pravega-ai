@@ -1,13 +1,9 @@
 import React, {Component} from "react";
-import { Link } from "react-router-dom";
+import ContainerUI from "../components/ContainerUI/ContainerUI";
 
-interface ContainerState {
+interface ContainerState {}
 
-}
-
-interface ContainerProps {
-
-}
+interface ContainerProps {}
 
 
 export default class Container extends Component<ContainerProps, ContainerState> {
@@ -20,19 +16,3 @@ export default class Container extends Component<ContainerProps, ContainerState>
         )
     }
 }
-
-const ContainerUI = () => (
-    <nav>
-        <ul>
-            <li>
-                <Link to="/">Home</Link>
-            </li>
-            <li>
-                <Link to="/about">About</Link>
-            </li>
-            <li>
-                <Link to="/users">Users</Link>
-            </li>
-        </ul>
-    </nav>
-)

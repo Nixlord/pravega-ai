@@ -9,11 +9,8 @@ import React from "react";
 
 const Routes = () => (
     <Switch>
-        <Route path="/about">
-            <About/>
-        </Route>
-        <Route path="/users">
-            <Users/>
+        <Route path="/sample">
+            <ResponsiveDrawer />
         </Route>
         <Route path="/">
             <Home prompt="Hello" defaultName="Diksha" />
@@ -22,16 +19,6 @@ const Routes = () => (
 );
 
 export default Routes;
-
-function About() {
-    console.log("Printing ABout")
-    return <ResponsiveDrawer/>;
-}
-
-function Users() {
-    return <h2>Users</h2>;
-}
-
 /*
 when you hit url /about
 
