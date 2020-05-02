@@ -8,7 +8,7 @@ from .models.clock.getTime import detectTimeFrom
 print(__name__)
 print(__package__)
 
-app = Flask(__name__, template_folder='./build', static_folder='./build/static')
+app = Flask(__name__, template_folder='./build', static_folder='./build/static', static_url_path='/')
 
 
 @app.route('/', defaults={'path': ''})
