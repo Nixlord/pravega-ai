@@ -1,5 +1,6 @@
 import React from "react";
 import {Button} from "@material-ui/core";
+import helloAPI from "../../../api/helloAPI";
 
 export interface HomeProps {
     prompt: string,
@@ -18,12 +19,10 @@ export default class Home extends React.Component<HomeProps, HomeState> {
     }
 
     componentDidMount(): void {
-        fetch(`/api/hello/${this.props.defaultName}`)
-            .then(response => response.json())
-            .then(json => this.setState({
-                name: json.developer
-            }))
-            .catch(console.error)
+        const name = this.props.defaultName
+        helloAPI({ name })
+            .then(res => res.developer)
+            .then(name => this.setState({ name }))
     }
 
     render() {

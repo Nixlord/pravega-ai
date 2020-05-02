@@ -6,8 +6,12 @@
   "author": "Shibasis Patnaik <shibasis0801@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "serve-ui": "cd website && yarn start && cd ..",
-    "serve-api": "python server/index.py",
-    "serve-prod": ""
+    "serve-ui": "cd website && npm start && cd ..",
+    "serve-api": "env web=website python server/index.py",
+    "serve-prod": "",
+    "new:api": "cross-env server=server website=website python scripts/commands/newApi/newApi.py"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2"
   }
 }
