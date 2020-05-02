@@ -1,14 +1,12 @@
-from flask import Flask, jsonify, request, render_template, redirect
+from flask import Flask, jsonify, request, render_template
 import os
 import random
 from werkzeug.utils import secure_filename
 
-print(__name__)
-print(__package__)
-
-# This needs fixing. Random stuff happens while import. 
 from .models.clock.getTime import detectTimeFrom
 
+print(__name__)
+print(__package__)
 
 app = Flask(__name__, static_folder='../website/build', static_url_path='/')
 
@@ -21,6 +19,7 @@ def index():
 @app.route('/api/hello/<name>')
 def say_hello(name: str):
     return jsonify({"developer": name})
+
 
 # curl -X POST \
 #   http://localhost:5000/capitalize-post \
