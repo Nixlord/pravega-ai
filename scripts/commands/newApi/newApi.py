@@ -1,23 +1,17 @@
+# USAGE
+# npm run new:api -- <route>
 import os
 import pathlib
 from sys import argv
 
+# Supply environment variables
+server = os.environ.get("server") or "server"
+website = os.environ.get("website") or "website"
 
-server_path = os.environ.get("server") or "server"
-website_path = os.environ.get("website") or "website"
-
-cwd = os.getcwd()
-server = pathlib.Path(server_path)
-website = pathlib.Path(website_path)
+# Pass arguments
 _, path = argv
-
-print(f"Running new api script in {cwd}")
-print(f"ServerFolder: {server}")
-print(f"WebsiteFolder: {website}")
-print(f"ArgumentVector: {argv}")
-print(f"API will be created at: ")
-print(f"    Server: {server}/api/{path}")
-print(f"    Client: {website}/src/api/{path}")
+folder, file = path.rsplit('/', 1)
+cwd = os.getcwd()
 
 
 def tsx_template(path: str) -> str:
@@ -29,10 +23,10 @@ def tsx_template(path: str) -> str:
 
     return f"""
 export interface {Request} {{
-    
+
 }}
 export interface {Response} {{
-    
+
 }}
 
 export default function {name}API(
@@ -41,8 +35,35 @@ export default function {name}API(
     return fetch(`/api/{path}`)
         .then(response => response.json())
 }}
+
 """
 
 
-print("Generated Client")
-print(tsx_template(path))
+api_folder = f"{server}/api/{folder}"
+api_path = f"{api_folder}/{file}.py"
+
+client_folder = f"{website}/src/api/{folder}"
+client_path = f"{client_folder}/{file}API.tsx"
+
+print(f"Running new api script in {cwd}")
+print(f"ServerFolder: {server}")
+print(f"WebsiteFolder: {website}")
+print(f"ArgumentVector: {argv}")
+print(f"API will be created at: ")
+print(f"    Server: {api_path}")
+print(f"    Client: {client_path}")
+
+
+def create_files(path: str) -> None:
+    client_text = tsx_template(path)
+
+    if not os.path.exists(client_folder):
+        os.makedirs(client_folder)
+
+    print(client_text, file=open(client_path, 'w'))
+    print("\nGenerated Client", end="")
+    print(tsx_template(path))
+
+
+create_files(path)
+
