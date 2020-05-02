@@ -1,22 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="analogClock.css">
+    <link rel="shortcut icon" type="image/x-icon" href="https://p7.hiclipart.com/preview/755/943/641/clock-face-analog-signal-analog-watch-digital-clock-time-is-profit.jpg"/>
+    <title>Analog Clock Predictor</title>
 </head>
-
 <body>
-    <h1>UPLOAD IMAGE</h1>
-    <div>
-        <label>
-            Select Image
-            <input id="inputImageUpload" type="file" name="clock_image" id="clock_image">
-        </label>
-        <button id="buttonImageUpload" type="submit">Upload</button>
-        <p id="textClockTime"></p>        
-
+    <div class="wrapper">
+        <div>
+            <!--Image Upload section-->
+            <section class="file">
+                <form action="#" method="post">
+                    <!--Image Upload from Web-->
+                    <label for="url">Enter Image URL:</label>
+                    <input type="url" name="textline" placeholder="E.g. http://www.example.com/example.jpg">
+                    <!--Image Upload from Local-->
+                    <label for="fileUpload">Upload from local</label>
+                    <input type="file" name="datafile" size="40">
+                    <!--Submit POST request to backend-->
+                    <div>
+                        <input type="submit" value="Upload" id="buttonImageUpload" class="submitButton">
+                    </div>
+                </form>
+            </section>
+        </div>
+        <section class="container">
+            <!--Display the image after POST request-->
+            <div class="showcase">
+                <!--Need to change the href value to the image uploaded by the user-->
+                <a href="#" class="img"></a>
+            </div>
+            <!--Display the Time-->
+            <div class="time-box">
+                <h2>Time</h2>
+                <p class="predictedTime">10:09</p>
+                <!--Submit button to display time-->
+                <input type="submit" value="Get Time" id="buttonGetTime" class="submitButton">
+            </div>
+        </section>
+          <footer>
+              <p>pravega-ai &copy; 2020</p>
+          </footer>
     </div>
+    
     <!--    Proof of Concept. Needs proper design -->
     <script>
         const buttonImageUpload = document.getElementById("buttonImageUpload");
