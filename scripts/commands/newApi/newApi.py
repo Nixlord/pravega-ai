@@ -20,7 +20,7 @@ print(f"    Server: {server}/api/{path}")
 print(f"    Client: {website}/src/api/{path}")
 
 
-def tsxTemplate(path: str) -> str:
+def tsx_template(path: str) -> str:
     # Will crash in linux/develop logic later
     name = path.split('/')[-1]
     Name = name.capitalize()
@@ -42,3 +42,7 @@ export default function {name}API(
         .then(response => response.json())
 }}
 """
+
+
+print("Generated Client")
+print(tsx_template(path))
