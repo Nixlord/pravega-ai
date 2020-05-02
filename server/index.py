@@ -8,13 +8,13 @@ from .models.clock.getTime import detectTimeFrom
 print(__name__)
 print(__package__)
 
-app = Flask(__name__, static_folder='./build', static_url_path='/')
+app = Flask(__name__, template_folder='./build')
 
 
-# Catch-all route not working. Fix
-@app.route('/')
-def index():
-    return app.send_static_file("index.html")
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def render_react(path):
+    return render_template("index.html")
 
 
 @app.route('/api/hello/<name>')
