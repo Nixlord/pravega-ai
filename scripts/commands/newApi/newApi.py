@@ -43,7 +43,7 @@ api_folder = f"{server}/api/{folder}"
 api_path = f"{api_folder}/{file}.py"
 
 client_folder = f"{website}/src/api/{folder}"
-client_path = f"{client_folder}/{file}API.tsx"
+client_path = f"{client_folder}/{file}API.ts"
 
 print(f"Running new api script in {cwd}")
 print(f"ServerFolder: {server}")
@@ -55,11 +55,13 @@ print(f"    Client: {client_path}")
 
 
 def create_files(path: str) -> None:
-    client_text = tsx_template(path)
+    create_client(path)
 
+
+def create_client(path) -> None:
+    client_text = tsx_template(path)
     if not os.path.exists(client_folder):
         os.makedirs(client_folder)
-
     print(client_text, file=open(client_path, 'w'))
     print("\nGenerated Client", end="")
     print(tsx_template(path))

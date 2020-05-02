@@ -3,8 +3,12 @@ import os
 import random
 from werkzeug.utils import secure_filename
 
+print(__name__)
+print(__package__)
+
 # This needs fixing. Random stuff happens while import. 
-from models.clock.getTime import detectTimeFrom
+from .models.clock.getTime import detectTimeFrom
+
 
 app = Flask(__name__, static_folder='../website/build', static_url_path='/')
 

@@ -1,6 +1,6 @@
 import React from "react";
 import {Button} from "@material-ui/core";
-import helloAPI from "../../../api/helloAPI";
+import helloAPI from "../../../api/samples/helloAPI";
 
 export interface HomeProps {
     prompt: string,
