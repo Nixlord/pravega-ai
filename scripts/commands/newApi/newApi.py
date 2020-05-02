@@ -32,7 +32,7 @@ export interface {Response} {{
 export default function {name}API(
     request: {Request}
 ): Promise<{Response}> {{
-    return fetch(`/api/{path}`)
+    return fetch(`/api{path}`)
         .then(response => response.json())
 }}
 

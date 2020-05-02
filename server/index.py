@@ -8,9 +8,10 @@ from .models.clock.getTime import detectTimeFrom
 print(__name__)
 print(__package__)
 
-app = Flask(__name__, static_folder='../website/build', static_url_path='/')
+app = Flask(__name__, static_folder='./build', static_url_path='/')
 
 
+# Catch-all route not working. Fix
 @app.route('/')
 def index():
     return app.send_static_file("index.html")

@@ -6,7 +6,8 @@
   "author": "Shibasis Patnaik <shibasis0801@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "install": "pip install -r requirements.txt && cd website && npm install",
+    "install": "cross-env website=website python scripts/setup/install.py",
+    "build": "cross-env source=website target=server/build python scripts/setup/build.py",
     "serve-ui": "cd website && npm start && cd ..",
     "serve-api": "cross-env web=website FLASK_APP=server/index.py python -m flask run",
     "serve-prod": "",
