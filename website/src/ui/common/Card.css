@@ -1,0 +1,21 @@
+.root {
+    width: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: cadetblue;
+    color: blueviolet;
+}
+.bullet {
+    display: 'inline-block';
+    margin: '0 2px';
+    transform: 'scale(0.8)'
+}
+.title {
+    font-size: 14;
+}
+.pos {
+    margin-bottom: 12;
+}
+.body {
+    margin-top: 20px;
+}
