@@ -11,7 +11,10 @@ const ContainerUI = () => (
                 <Link to="/about">About</Link>
             </li>
             <li>
-                <Link to="/users">Users</Link>
+                <Link to="/sample">Users</Link>
+            </li>
+            <li>
+                <Link to="/tic-tac-toe">Tic-Tac-Toe</Link>
             </li>
         </ul>
     </nav>

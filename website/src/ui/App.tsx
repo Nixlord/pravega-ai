@@ -3,6 +3,7 @@ import './App.css';
 import Routes from './common/Routes';
 import {BrowserRouter} from "react-router-dom";
 import Container from "./common/Container";
+import StaggeredGrid from "./common/StaggeredGrid";
 
 const App = () => (
   <>
@@ -11,6 +12,7 @@ const App = () => (
             <Routes />
         </Container>
     </BrowserRouter>
+    <StaggeredGrid/>
   </>
 )
 
