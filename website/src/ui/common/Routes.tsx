@@ -6,11 +6,15 @@ import {
 import ResponsiveDrawer from "../components/samples/Drawer/Drawer";
 import Home from "../components/Home/Home";
 import React from "react";
+import Tic_Tac_Toe from "../components/TicTacToe/Tic_Tac_Toe";
 
 const Routes = () => (
     <Switch>
         <Route path="/sample">
             <ResponsiveDrawer />
+        </Route>
+        <Route path="/tic-tac-toe">
+            <Tic_Tac_Toe />
         </Route>
         <Route path="/">
             <Home prompt="Hello" defaultName="Diksha" />
