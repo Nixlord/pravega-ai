@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import ContainerUI from "../components/ContainerUI/ContainerUI";
+import ContainerUI from "./ContainerUI/ContainerUI";
 
 interface ContainerState {}
 
