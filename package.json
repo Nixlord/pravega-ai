@@ -1,0 +1,19 @@
+{
+  "name": "pravega-ai",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Nixlord/pravega-ai.git",
+  "author": "Shibasis Patnaik <shibasis0801@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "install": "cross-env website=website python scripts/setup/install.py",
+    "build": "cross-env source=website target=server/build python scripts/setup/build.py",
+    "serve-ui": "cd website && npm start && cd ..",
+    "serve-api": "cross-env web=website FLASK_APP=server/index.py python -m flask run",
+    "serve-prod": "cd website && npm run build && cd .. && npm run serve-api",
+    "new:api": "cross-env server=server website=website python scripts/commands/newApi/newApi.py"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2"
+  }
+}

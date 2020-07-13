@@ -1,16 +1,18 @@
+/* Can't have global CSS */
+
 :root {
     --primary: #ddd;
     --dark: #333;
     --light: #fff;
     --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
   }
-  
+
   html {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
     color: var(--dark);
   }
-  
+
   body {
     background: rgb(136, 124, 124);
     margin: 30px 50px;
@@ -18,7 +20,7 @@
     background-image: url(https://i.pinimg.com/originals/58/bd/82/58bd827dc0715589a5a86872feb66eae.jpg);
     background-size: cover;
   }
-  
+
   .submitButton {
     background: var(--dark);
     color: var(--light);
@@ -31,11 +33,11 @@
     cursor: pointer;
     width: max-content;
   }
-  
+
   .img {
     max-width: 100%;
   }
-  
+
   .wrapper {
     display: grid;
     grid-gap: 20px;
@@ -54,11 +56,11 @@
     border-radius: 4px;
     box-sizing: border-box;
   }
-  
+
   .submitButton:hover {
     background-color: #45a049;
   }
-  
+
   .file {
     font-size: 1.5rem;
     margin-bottom: 0;
@@ -74,7 +76,7 @@
     column-gap: 10px;
     min-height: 500px;
   }
-  
+
   .showcase {
     display: grid;
     grid-column-start: 1;
@@ -87,7 +89,7 @@
     justify-content: center;
     box-shadow: var(--shadow);
   }
-  
+
   .time-box {
     display: grid;
     grid-column-start: 5;

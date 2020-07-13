@@ -8,7 +8,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
+#build/
 develop-eggs/
 dist/
 downloads/
@@ -105,3 +105,22 @@ venv.bak/
 
 .idea
 temp/
+
+website/.idea/
+website/.vscode/
+website/node_modules/
+website/build
+website/.DS_Store
+website/*.tgz
+website/my-app*
+website/template/src/__tests__/__snapshots__/
+website/lerna-debug.log
+website/npm-debug.log*
+website/yarn-debug.log*
+website/yarn-error.log*
+website/.changelog
+website/.npm/
+website/yarn.lock
+node_modules
+
+.gradle
