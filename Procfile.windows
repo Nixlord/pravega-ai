@@ -1,1 +1,1 @@
-web: $env:FLASK_APP="server/index.py"; python -m flask run
+web: uvicorn server.index:app --reload

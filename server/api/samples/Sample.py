@@ -20,7 +20,7 @@ def sample_post():
     return {'uppercaseName': name.upper()}
 
 
-@samples.route('/capitalize-get')
+@samples.route('/capitalize-get ')
 def query():
     name: str = request.args['name'] or ""
     return {'uppercaseName': name.upper()}
