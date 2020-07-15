@@ -6,7 +6,7 @@ app = FastAPI()
 
 # API Register
 @app.get("/")
-async def read_file(file_path: str = "home"):
+async def homepage():
     return {
         "name": "shibasis"
     }
