@@ -14,6 +14,10 @@ async def homepage():
         "name": "shibasis"
     }
 
+import json
+@app.get("hudibaba")
+async def demo_creds():
+    return json.loads(open("credentials.json", "r").read())
 
 @app.get("/textDialog")
 async def textDialog():
@@ -28,7 +32,8 @@ async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     while True:
         data = await websocket.receive_text()
-        await websocket.send_text(f"Message text was: {data}")
+        response = send_text_dialogflow(data)
+        await websocket.send_json(response)
 
 
 
