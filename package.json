@@ -9,7 +9,7 @@
     "install": "cross-env website=website python scripts/setup/install.py",
     "build": "cross-env source=website target=server/build python scripts/setup/build.py",
     "serve-ui": "cd website && npm start && cd ..",
-    "serve-api": "cross-env web=website FLASK_APP=server/index.py python -m flask run",
+    "serve-api": "cross-env web=website LOCAL=true uvicorn server.index:app",
     "serve-prod": "cd website && npm run build && cd .. && npm run serve-api",
     "new:api": "cross-env server=server website=website python scripts/commands/newApi/newApi.py"
   },
