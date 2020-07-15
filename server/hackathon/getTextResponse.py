@@ -1,8 +1,11 @@
+import os
+
 import dialogflow_v2 as dialogflow
 
 DIALOGFLOW_PROJECT_ID = 'hackethon-283217'
 DIALOGFLOW_LANGUAGE_CODE = 'en'
 SESSION_ID = 'me'
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "credentials.json"
 
 def send_text_dialogflow(text_to_be_analyzed):
     session_client = dialogflow.SessionsClient()
