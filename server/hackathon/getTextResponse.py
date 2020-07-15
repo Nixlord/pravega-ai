@@ -1,18 +1,18 @@
-import os, json
-
+import json
+import os
 import dialogflow_v2 as dialogflow
 
 DIALOGFLOW_PROJECT_ID = 'hackethon-283217'
 DIALOGFLOW_LANGUAGE_CODE = 'en'
 SESSION_ID = 'me'
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "credentials.json"
+
 
 def send_text_dialogflow(text_to_be_analyzed):
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "credentials.json"
-    # session_client = dialogflow.SessionsClient()
-    # session = session_client.session_path(DIALOGFLOW_PROJECT_ID, SESSION_ID)
-    # text_input = dialogflow.types.TextInput(text=text_to_be_analyzed, language_code=DIALOGFLOW_LANGUAGE_CODE)
-    # query_input = dialogflow.types.QueryInput(text=text_input)
+    session_client = dialogflow.SessionsClient()
+    session = session_client.session_path(DIALOGFLOW_PROJECT_ID, SESSION_ID)
+    text_input = dialogflow.types.TextInput(text=text_to_be_analyzed, language_code=DIALOGFLOW_LANGUAGE_CODE)
+    query_input = dialogflow.types.QueryInput(text=text_input)
     # try:
     #     response = session_client.detect_intent(session=session, query_input=query_input)
     # except:
