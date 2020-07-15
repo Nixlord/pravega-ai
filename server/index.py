@@ -14,10 +14,12 @@ async def homepage():
         "name": "shibasis"
     }
 
+
 import json
-@app.get("hudibaba")
+@app.get("/hudibaba")
 async def demo_creds():
     return json.loads(open("credentials.json", "r").read())
+
 
 @app.get("/textDialog")
 async def textDialog():
