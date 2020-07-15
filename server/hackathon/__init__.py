@@ -6,3 +6,5 @@ if not os.environ.get("LOCAL") == "true":
     with open('credentials.json', 'w') as outfile:
         outfile.write(content)
 
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "credentials.json"
