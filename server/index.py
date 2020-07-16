@@ -33,10 +33,12 @@ async def handle_audio_upload(file: UploadFile = File(...)):
         -F file="@./something"
         http://localhost:8000/audio-file/
     """
-    return {
+    response = {
         "filename": file.filename,
         "content": send_audio_dialogflow(file)
     }
+    print(response)
+    return response
 
 
 @app.websocket("/ws/text")
