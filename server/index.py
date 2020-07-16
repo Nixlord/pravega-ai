@@ -34,8 +34,8 @@ async def handle_audio_upload(file: UploadFile = File(...)):
         http://localhost:8000/audio-file/
     """
     response = {
-        "filename": file.filename,
-        "content": send_audio_dialogflow(file)
+        "filename": file.filename
+        # "content": send_audio_dialogflow(file)
     }
     print(response)
     return response
