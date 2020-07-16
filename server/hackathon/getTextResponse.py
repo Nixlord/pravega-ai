@@ -34,7 +34,7 @@ def convert(audio, outputPath):
         'ffmpeg', '-i',
         audio.name,
         outputPath
-    ], capture_output=True).stdout.decode("utf-8"))
+    ], stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.decode("utf-8"))
 
 
 def send_audio_dialogflow(audio):
