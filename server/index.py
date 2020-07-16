@@ -84,9 +84,17 @@ async def websocket_endpoint(websocket: WebSocket):
         data = json.loads(text)
         print(data)
         if data["to"] == "PERSONAL_ASSISTANT":
-            await websocket.send_json(personal_assistant_bot(data["text"]))
+            bot = personal_assistant_bot
         elif data["to"] == "CUSTOMER_SERVICE":
-            await websocket.send_json(customer_service_bot(data["text"]))
+            bot = customer_service_bot
+
+        results = {}
+        try:
+            results = bot(data["text"])
+        except:
+            pass
+
+        await websocket.send_json(results)
 
 if __name__ == '__main__':
     uvicorn.run(app)
