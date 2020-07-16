@@ -1,8 +1,8 @@
 from pathlib import Path
-
+import subprocess
 import speech_recognition as Speech
 import dialogflow_v2 as dialogflow
-from fastapi import File, UploadFile
+
 
 DIALOGFLOW_PROJECT_ID = 'hackethon-283217'
 DIALOGFLOW_LANGUAGE_CODE = 'en'
@@ -29,9 +29,19 @@ def send_text_dialogflow(text_to_be_analyzed):
     }
 
 
-def send_audio_dialogflow(audio: File):
+def convert(audio, outputPath):
+    print(subprocess.run([
+        'ffmpeg', '-i',
+        audio.name,
+        outputPath
+    ], capture_output=True).stdout.decode("utf-8"))
+
+
+def send_audio_dialogflow(audio):
     # Can OOM
-    with Speech.AudioFile(audio) as source:
+    output = f"/tmp/${audio.name.split('.')[0]}.wav"
+    convert(audio, output)
+    with Speech.AudioFile(output) as source:
         audio = recognizer.record(source)
 
     return recognizer.recognize_google(audio)
