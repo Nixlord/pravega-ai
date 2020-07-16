@@ -10,7 +10,32 @@ SESSION_ID = 'me'
 recognizer = Speech.Recognizer()
 
 
-def send_text_dialogflow(text_to_be_analyzed):
+def personal_assistant_bot(text_to_be_analyzed):
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = personalAssistant["filename"]
+    session_client = dialogflow.SessionsClient()
+    session = session_client.session_path(personalAssistant["project"], SESSION_ID)
+    text_input = dialogflow.types.TextInput(text=text_to_be_analyzed, language_code="en")
+    query_input = dialogflow.types.QueryInput(text=text_input)
+
+    try:
+        response = session_client.detect_intent(session=session, query_input=query_input)
+    except:
+        raise
+
+    values = {
+        k: v.string_value for k, v in response.query_result.parameters.fields.items()
+    }
+
+    return {
+        "text": response.query_result.query_text,
+        "intent": response.query_result.intent.display_name,
+        "intentConfidence": response.query_result.intent_detection_confidence,
+        "fullfillment": response.query_result.fulfillment_text,
+        "items": values
+    }
+
+
+def customer_service_bot(text_to_be_analyzed):
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = customerService["filename"]
     session_client = dialogflow.SessionsClient()
     session = session_client.session_path(customerService["project"], SESSION_ID)

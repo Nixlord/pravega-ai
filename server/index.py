@@ -5,7 +5,7 @@ from typing import Callable
 from fastapi import FastAPI, WebSocket, UploadFile, File
 import uvicorn
 
-from server.hackathon.getTextResponse import send_text_dialogflow, send_audio_dialogflow
+from server.hackathon.getTextResponse import customer_service_bot, send_audio_dialogflow, personal_assistant_bot
 
 app = FastAPI()
 
@@ -18,10 +18,17 @@ async def homepage():
     }
 
 
-@app.get("/textDialog")
+
+@app.get("/customerDialog")
 async def text_dialog():
     text = 'i am not satisfied'
-    return send_text_dialogflow(text)
+    return customer_service_bot(text)
+
+
+@app.get("/personalDialog")
+async def personal_dialog():
+    text = 'I want to buy a black t-shirt'
+    return personal_assistant_bot(text)
 
 
 # HTTP file upload, return filename, then send here.
@@ -73,7 +80,7 @@ async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     while True:
         data = await websocket.receive_text()
-        response = send_text_dialogflow(data)
+        response = customer_service_bot(data)
         await websocket.send_json(response)
 
 
