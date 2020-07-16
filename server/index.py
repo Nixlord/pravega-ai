@@ -46,16 +46,6 @@ def save_upload_file_tmp(upload_file: UploadFile) -> Path:
     return tmp_path
 
 
-def handle_upload_file(
-    upload_file: UploadFile, handler: Callable[[Path], None]
-) -> None:
-    tmp_path = save_upload_file_tmp(upload_file)
-    try:
-        handler(tmp_path)  # Do something with the saved temp file
-    finally:
-        tmp_path.unlink()  # Delete the temp file
-
-
 @app.post("/audio-file/")
 def handle_audio_upload(file: UploadFile = File(...)):
     """
