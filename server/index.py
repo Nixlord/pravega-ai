@@ -60,7 +60,7 @@ def handle_audio_upload(file: UploadFile = File(...)):
         http://localhost:8000/audio-file/
     """
 
-    tmpFile = save_upload_file_tmp(file)
+    tmpFile = get_file(file)
     response = {
         "content": "NOT_FOUND"
     }
