@@ -1,7 +1,7 @@
 from fastapi import FastAPI, WebSocket, UploadFile, File
 import uvicorn
 
-from server.hackathon.getTextResponse import send_text_dialogflow
+from server.hackathon.getTextResponse import send_text_dialogflow, send_audio_dialogflow
 
 app = FastAPI()
 
@@ -34,7 +34,8 @@ async def handle_audio_upload(file: UploadFile = File(...)):
         http://localhost:8000/audio-file/
     """
     return {
-        "filename": file.filename
+        "filename": file.filename,
+        "content": send_audio_dialogflow(file)
     }
 
 
