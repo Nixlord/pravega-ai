@@ -1,11 +1,11 @@
-from fastapi import FastAPI, WebSocket
+from fastapi import FastAPI, WebSocket, UploadFile, File
 import uvicorn
 
 from server.hackathon.getTextResponse import send_text_dialogflow
 
 app = FastAPI()
 
-#  check if websockets can do filehandling
+# check if websockets can do filehandling
 # i have remmoved apt buildpack will need to be restored before running open cv
 # API Register
 @app.get("/")
@@ -15,19 +15,28 @@ async def homepage():
     }
 
 
-import json
-@app.get("/hudibaba")
-async def demo_creds():
-    return json.loads(open("credentials.json", "r").read())
-
-
 @app.get("/textDialog")
-async def textDialog():
+async def text_dialog():
     text = 'i am not satisfied'
     return send_text_dialogflow(text)
 
 
 # HTTP file upload, return filename, then send here.
+
+
+@app.post("/audio-file/")
+async def handle_audio_upload(file: UploadFile = File(...)):
+    """
+     curl -X POST
+        -H 'Accept: application/json'
+        -H 'Content-Type: multipart/form-data; charset=utf-8'
+        -F file="@./something"
+        http://localhost:8000/audio-file/
+    """
+    return {
+        "filename": file.filename
+    }
+
 
 @app.websocket("/ws/text")
 async def websocket_endpoint(websocket: WebSocket):
