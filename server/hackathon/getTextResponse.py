@@ -24,7 +24,7 @@ def send_text_dialogflow(text_to_be_analyzed):
     return {
         "text": response.query_result.query_text,
         "intent": response.query_result.intent.display_name,
-        "intent_confidence": response.query_result.intent_detection_confidence,
+        "intentConfidence": response.query_result.intent_detection_confidence,
         "fullfillment": response.query_result.fulfillment_text
     }
 
