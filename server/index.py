@@ -9,8 +9,7 @@ from server.hackathon.getTextResponse import send_text_dialogflow, send_audio_di
 
 app = FastAPI()
 
-# check if websockets can do filehandling
-# i have remmoved apt buildpack will need to be restored before running open cv
+
 # API Register
 @app.get("/")
 async def homepage():
@@ -76,7 +75,6 @@ async def websocket_endpoint(websocket: WebSocket):
         data = await websocket.receive_text()
         response = send_text_dialogflow(data)
         await websocket.send_json(response)
-
 
 
 if __name__ == '__main__':

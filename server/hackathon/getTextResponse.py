@@ -11,9 +11,9 @@ recognizer = Speech.Recognizer()
 
 
 def send_text_dialogflow(text_to_be_analyzed):
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = personalAssistant
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = personalAssistant["filename"]
     session_client = dialogflow.SessionsClient()
-    session = session_client.session_path(personalAssistant["key"], SESSION_ID)
+    session = session_client.session_path(personalAssistant["project"], SESSION_ID)
     text_input = dialogflow.types.TextInput(text=text_to_be_analyzed, language_code="en")
     query_input = dialogflow.types.QueryInput(text=text_input)
 

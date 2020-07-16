@@ -4,20 +4,22 @@ import string
 
 customerService = {
     "key": "CUSTOMER_SERVICE",
-    "project": "hackethon-283217"
+    "project": "hackethon-283217",
+    "filename": "CUSTOMER_SERVICE.json"
 }
 
 personalAssistant = {
     "key": "PERSONAL_ASSISTANT",
-    "project": "online-shopping-spsvwi"
+    "project": "online-shopping-spsvwi",
+    "filename": "PERSONAL_ASSISTANT.json"
 }
 
 
-def write_to_file(key: string):
-    with open(f"{key}.json", 'w') as outfile:
-        outfile.write(os.environ[key])
+def write_to_file(chatbot):
+    with open(chatbot["filename"], 'w') as outfile:
+        outfile.write(os.environ[chatbot["key"]])
 
 
 if not os.environ.get("LOCAL") == "true":
-    write_to_file(customerService["key"])
-    write_to_file(personalAssistant["key"])
+    write_to_file(customerService)
+    write_to_file(personalAssistant)
