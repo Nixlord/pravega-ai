@@ -29,10 +29,9 @@ def send_text_dialogflow(text_to_be_analyzed):
     }
 
 
-def send_audio_dialogflow(audio: Path):
+def send_audio_dialogflow(audio: File):
     # Can OOM
-    print(audio.absolute())
-    with Speech.AudioFile(audio.absolute()) as source:
+    with Speech.AudioFile(audio) as source:
         audio = recognizer.record(source)
 
     return recognizer.recognize_google(audio)
