@@ -1,6 +1,6 @@
 import speech_recognition as Speech
 import dialogflow_v2 as dialogflow
-from fastapi import File
+from fastapi import File, UploadFile
 
 DIALOGFLOW_PROJECT_ID = 'hackethon-283217'
 DIALOGFLOW_LANGUAGE_CODE = 'en'
@@ -27,8 +27,9 @@ def send_text_dialogflow(text_to_be_analyzed):
     }
 
 
-def send_audio_dialogflow(audio: File):
-    with Speech.AudioFile(audio) as source:
+def send_audio_dialogflow(audio: UploadFile):
+    # Can OOM
+    with Speech.AudioData(audio.file.read(), sample_rate=16000) as source:
         audio = recognizer.record(source)
 
     return recognizer.recognize_google(audio)
