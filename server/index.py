@@ -59,17 +59,11 @@ def handle_audio_upload(file: UploadFile = File(...)):
         -F file="@./something"
         http://localhost:8000/audio-file/
     """
-
     tmpFile = get_file(file)
     response = {
-        "content": "NOT_FOUND"
+        "content": send_audio_dialogflow(tmpFile)
     }
-
-    try:
-        response = send_audio_dialogflow(tmpFile)
-    finally:
-        tmpFile.unlink()
-
+    tmpFile.close()
     return response
 
 
