@@ -1,10 +1,23 @@
 import os
-import json
+import string
+
+
+customerService = {
+    "key": "CUSTOMER_SERVICE",
+    "project": "hackethon-283217"
+}
+
+personalAssistant = {
+    "key": "PERSONAL_ASSISTANT",
+    "project": "online-shopping-spsvwi"
+}
+
+
+def write_to_file(key: string):
+    with open(f"{key}.json", 'w') as outfile:
+        outfile.write(os.environ[key])
+
 
 if not os.environ.get("LOCAL") == "true":
-    content = os.environ["GOOGLE_API_CREDENTIALS"]
-    with open('credentials.json', 'w') as outfile:
-        outfile.write(content)
-
-
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "credentials.json"
+    write_to_file(customerService["key"])
+    write_to_file(personalAssistant["key"])
