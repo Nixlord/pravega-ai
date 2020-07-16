@@ -1,6 +1,4 @@
 import os
-import string
-
 
 customerService = {
     "key": "CUSTOMER_SERVICE",
