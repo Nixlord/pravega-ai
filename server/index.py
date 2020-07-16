@@ -37,8 +37,7 @@ def save_upload_file(upload_file: UploadFile, destination: Path) -> None:
 
 def save_upload_file_tmp(upload_file: UploadFile) -> Path:
     try:
-        suffix = Path(upload_file.filename).suffix
-        with NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+        with NamedTemporaryFile(delete=False, suffix="3gp") as tmp:
             shutil.copyfileobj(upload_file.file, tmp)
             tmp_path = Path(tmp.name)
     finally:
