@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import speech_recognition as Speech
 import dialogflow_v2 as dialogflow
 from fastapi import File, UploadFile
@@ -27,9 +29,9 @@ def send_text_dialogflow(text_to_be_analyzed):
     }
 
 
-def send_audio_dialogflow(audio: UploadFile):
+def send_audio_dialogflow(audio: Path):
     # Can OOM
-    with Speech.AudioData(audio.file.read(), sample_rate=16000) as source:
+    with Speech.AudioFile(audio) as source:
         audio = recognizer.record(source)
 
     return recognizer.recognize_google(audio)

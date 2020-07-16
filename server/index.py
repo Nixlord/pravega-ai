@@ -1,3 +1,7 @@
+import shutil
+from pathlib import Path
+from tempfile import NamedTemporaryFile
+from typing import Callable
 from fastapi import FastAPI, WebSocket, UploadFile, File
 import uvicorn
 
@@ -23,9 +27,37 @@ async def text_dialog():
 
 # HTTP file upload, return filename, then send here.
 
+def save_upload_file(upload_file: UploadFile, destination: Path) -> None:
+    try:
+        with destination.open("wb") as buffer:
+            shutil.copyfileobj(upload_file.file, buffer)
+    finally:
+        upload_file.file.close()
+
+
+def save_upload_file_tmp(upload_file: UploadFile) -> Path:
+    try:
+        suffix = Path(upload_file.filename).suffix
+        with NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+            shutil.copyfileobj(upload_file.file, tmp)
+            tmp_path = Path(tmp.name)
+    finally:
+        upload_file.file.close()
+    return tmp_path
+
+
+def handle_upload_file(
+    upload_file: UploadFile, handler: Callable[[Path], None]
+) -> None:
+    tmp_path = save_upload_file_tmp(upload_file)
+    try:
+        handler(tmp_path)  # Do something with the saved temp file
+    finally:
+        tmp_path.unlink()  # Delete the temp file
+
 
 @app.post("/audio-file/")
-async def handle_audio_upload(file: UploadFile = File(...)):
+def handle_audio_upload(file: UploadFile = File(...)):
     """
      curl -X POST
         -H 'Accept: application/json'
@@ -33,11 +65,14 @@ async def handle_audio_upload(file: UploadFile = File(...)):
         -F file="@./something"
         http://localhost:8000/audio-file/
     """
-    response = {
-        "filename": file.filename
-        # "content": send_audio_dialogflow(file)
-    }
-    print(response)
+
+    tmpFile = save_upload_file_tmp(file)
+    response = { "content": "NOT_FOUND" }
+    try:
+        response = send_audio_dialogflow(tmpFile)
+    finally:
+        tmpFile.unlink()
+
     return response
 
 
@@ -48,8 +83,6 @@ async def websocket_endpoint(websocket: WebSocket):
         data = await websocket.receive_text()
         response = send_text_dialogflow(data)
         await websocket.send_json(response)
-
-
 
 
 
