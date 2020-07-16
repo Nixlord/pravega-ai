@@ -27,10 +27,11 @@ def personal_assistant_bot(text_to_be_analyzed):
     }
 
     return {
+        "from": "PERSONAL_ASSISTANT",
         "text": response.query_result.query_text,
         "intent": response.query_result.intent.display_name,
         "intentConfidence": response.query_result.intent_detection_confidence,
-        "fullfillment": response.query_result.fulfillment_text,
+        "fulfillment": response.query_result.fulfillment_text,
         "items": values
     }
 
@@ -47,10 +48,11 @@ def customer_service_bot(text_to_be_analyzed):
     except:
         raise
     return {
+        "from": "CUSTOMER_SERVICE",
         "text": response.query_result.query_text,
         "intent": response.query_result.intent.display_name,
         "intentConfidence": response.query_result.intent_detection_confidence,
-        "fullfillment": response.query_result.fulfillment_text
+        "fulfillment": response.query_result.fulfillment_text
     }
 
 

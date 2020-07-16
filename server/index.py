@@ -1,3 +1,4 @@
+import json
 import shutil
 from pathlib import Path
 from tempfile import NamedTemporaryFile
@@ -79,10 +80,13 @@ def handle_audio_upload(file: UploadFile = File(...)):
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     while True:
-        data = await websocket.receive_text()
-        response = customer_service_bot(data)
-        await websocket.send_json(response)
-
+        text = await websocket.receive_text()
+        data = json.loads(text)
+        print(data)
+        if data["to"] == "PERSONAL_ASSISTANT":
+            await websocket.send_json(personal_assistant_bot(data["text"]))
+        elif data["to"] == "CUSTOMER_SERVICE":
+            await websocket.send_json(customer_service_bot(data["text"]))
 
 if __name__ == '__main__':
     uvicorn.run(app)
