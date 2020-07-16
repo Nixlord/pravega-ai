@@ -67,7 +67,9 @@ def handle_audio_upload(file: UploadFile = File(...)):
     """
 
     tmpFile = save_upload_file_tmp(file)
-    response = { "content": "NOT_FOUND" }
+    response = {
+        "content": "NOT_FOUND"
+    }
     try:
         response = send_audio_dialogflow(tmpFile)
     finally:
