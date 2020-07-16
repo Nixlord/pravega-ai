@@ -39,7 +39,7 @@ def convert(audio, outputPath):
 
 def send_audio_dialogflow(audio):
     # Can OOM
-    output = f"/tmp/${audio.name.split('.')[0]}.wav"
+    output = f"{audio.name.split('.')[0]}.wav"
     convert(audio, output)
     with Speech.AudioFile(output) as source:
         audio = recognizer.record(source)

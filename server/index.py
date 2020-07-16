@@ -45,7 +45,7 @@ def save_upload_file_tmp(upload_file: UploadFile) -> Path:
     return tmp_path
 
 def get_file(upload_file: UploadFile):
-    tmp = NamedTemporaryFile(delete=False, suffix=".3gp", prefix="snd")
+    tmp = NamedTemporaryFile(delete=False, suffix=".3gp", prefix="snd_")
     shutil.copyfileobj(upload_file.file, tmp)
     upload_file.file.close()
     return tmp
