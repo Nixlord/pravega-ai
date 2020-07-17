@@ -5,15 +5,13 @@ import dialogflow_v2 as dialogflow
 import os
 from server.hackathon import customerService, personalAssistant
 
-SESSION_ID = 'me'
-
 recognizer = Speech.Recognizer()
 
 
 def personal_assistant_bot(text_to_be_analyzed):
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = personalAssistant["filename"]
     session_client = dialogflow.SessionsClient()
-    session = session_client.session_path(personalAssistant["project"], SESSION_ID)
+    session = session_client.session_path(personalAssistant["project"], "assistant")
     text_input = dialogflow.types.TextInput(text=text_to_be_analyzed, language_code="en")
     query_input = dialogflow.types.QueryInput(text=text_input)
 
@@ -39,7 +37,7 @@ def personal_assistant_bot(text_to_be_analyzed):
 def customer_service_bot(text_to_be_analyzed):
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = customerService["filename"]
     session_client = dialogflow.SessionsClient()
-    session = session_client.session_path(customerService["project"], SESSION_ID)
+    session = session_client.session_path(customerService["project"], "customer")
     text_input = dialogflow.types.TextInput(text=text_to_be_analyzed, language_code="en")
     query_input = dialogflow.types.QueryInput(text=text_input)
 
