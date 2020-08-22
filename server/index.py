@@ -4,12 +4,26 @@ from pathlib import Path
 from tempfile import NamedTemporaryFile
 from typing import Callable
 from fastapi import FastAPI, WebSocket, UploadFile, File
+from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
 from server.hackathon.getTextResponse import customer_service_bot, send_audio_dialogflow, personal_assistant_bot
 
 app = FastAPI()
 
+# Remove localhost and find a better method.
+origins = [
+    "https://shibasis-patnaik.web.app/",
+    "http://localhost:3000"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # API Register
 @app.get("/")
