@@ -13,7 +13,7 @@ app = FastAPI()
 
 # Remove localhost and find a better method.
 origins = [
-    "https://shibasis-patnaik.web.app/",
+    "https://shibasis-patnaik.web.app",
     "http://localhost:3000"
 ]
 
