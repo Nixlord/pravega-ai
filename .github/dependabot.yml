@@ -1,0 +1,43 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: google-auth
+    versions:
+    - 1.24.0
+    - 1.25.0
+    - 1.26.0
+    - 1.26.1
+    - 1.27.0
+    - 1.27.1
+    - 1.28.0
+    - 1.28.1
+    - 1.29.0
+  - dependency-name: google-api-core
+    versions:
+    - 1.25.1
+    - 1.26.0
+    - 1.26.1
+    - 1.26.2
+  - dependency-name: pydantic
+    versions:
+    - 1.7.3
+    - "1.8"
+  - dependency-name: numpy
+    versions:
+    - 1.19.5
+    - 1.20.0
+    - 1.20.1
+  - dependency-name: urllib3
+    versions:
+    - 1.26.3
+  - dependency-name: starlette
+    versions:
+    - 0.14.1
+  - dependency-name: jinja2
+    versions:
+    - 2.11.2
